@@ -1,0 +1,19 @@
+version: "3.1"
+services: 
+    node-test-server:
+        container_name: node-test-server
+        image : node-test-server
+        restart: always
+        build: .
+        ports:
+            - "4000:4000"
+        links:
+            - mongo
+    mongo:
+        image: mongo
+        volumes:
+             - data-db:/data/db
+        ports: 
+             - '27017:27017'
+volumes:
+     data-db:
